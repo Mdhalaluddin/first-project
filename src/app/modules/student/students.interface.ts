@@ -1,6 +1,10 @@
-import exp from 'constants';
 import { Schema, model, connect } from 'mongoose';
 
+export type UserName = {
+  firstName: string;
+  middleName?: string;
+  lastName: string;
+};
 export type Guardian = {
   fatherName: string;
   fatherOccupation: string;
@@ -10,12 +14,6 @@ export type Guardian = {
   motherContractNo: string;
 };
 
-export type UserName = {
-  firstName: string;
-  middleName: string;
-  lestName: string;
-};
-
 export type LocalGuardian = {
   name: string;
   occupation: string;
@@ -23,7 +21,7 @@ export type LocalGuardian = {
   address: string;
 };
 
-export type Students = {
+export type Student = {
   id: string;
   name: UserName;
   gender: 'male' | 'female';

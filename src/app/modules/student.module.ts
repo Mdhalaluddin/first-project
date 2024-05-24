@@ -1,23 +1,32 @@
-import { Schema, model, connect } from 'mongoose';
-import { Students } from './student/students.interface';
+import { Schema, model } from 'mongoose';
+import { Guardian, Student, UserName } from './student/students.interface';
 
-const studentSchema = new Schema<Students>({
-  id: { type: String },
-  name: {
-    type: {
-      firstName: {
-        type: String,
-        required: true,
-      },
-      middleName: {
-        type: String,
-      },
-      lestName: {
-        type: String,
-        required: true,
-      },
-    },
+const guardianSchema = new Schema<Guardian>({
+  fatherName: { type: String, required: true },
+  fatherOccupation: { type: String, required: true },
+  fatherContractNo: { type: String, required: true },
+  motherName: { type: String, required: true },
+  motherOccupation: { type: String, required: true },
+  motherContractNo: { type: String, required: true },
+});
+
+const nameSchema = new Schema<UserName>({
+  firstName: {
+    type: String,
+    required: true,
   },
+  middleName: {
+    type: String,
+  },
+  lastName: {
+    type: String,
+    required: true,
+  },
+});
+
+const studentSchema = new Schema<Student>({
+  id: { type: String },
+  name: nameSchema,
   gender: {
     type: String,
     required: true,
@@ -43,6 +52,7 @@ const studentSchema = new Schema<Students>({
     type: String,
     required: true,
   },
+  guardian: guardianSchema,
   localGuardian: {
     type: String,
     required: true,
@@ -51,4 +61,8 @@ const studentSchema = new Schema<Students>({
     type: String,
     required: true,
   },
+  profileImg: { type: String },
+  isActive: ['active', 'blocked'],
 });
+
+export const StudentModel = model<Student>('Student', studentSchema);
