@@ -14,6 +14,9 @@ const nameSchema = new Schema<UserName>({
   firstName: {
     type: String,
     required: true,
+    trim: true,
+    maxlength: 20,
+    massage: '{VALUE} is not required',
   },
   middleName: {
     type: String,
@@ -21,25 +24,34 @@ const nameSchema = new Schema<UserName>({
   lastName: {
     type: String,
     required: true,
+    massage: '{VALUE} is not required',
   },
 });
 
 const studentSchema = new Schema<Student>({
-  id: { type: String },
+  id: { type: String, required: true, unique: true },
   name: nameSchema,
   gender: {
     type: String,
+    enum: ['Male', 'female', 'other'],
     required: true,
   },
   dateOfBirth: {
     type: String,
     required: true,
+    massage: '{VALUE} is not required',
   },
   email: {
     type: String,
     required: true,
+    massage: '{VALUE} is not required',
+    unique: true,
   },
-  bloodGroup: ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'],
+  bloodGroup: {
+    type: String,
+    enum: ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'],
+    required: true,
+  },
   presentAddress: {
     type: String,
     required: true,
@@ -52,7 +64,12 @@ const studentSchema = new Schema<Student>({
     type: String,
     required: true,
   },
-  guardian: guardianSchema,
+
+  guardian: {
+    type: guardianSchema,
+    required: true,
+    massage: '{VALUE} is not required',
+  },
   localGuardian: {
     type: String,
     required: true,
@@ -62,7 +79,11 @@ const studentSchema = new Schema<Student>({
     required: true,
   },
   profileImg: { type: String },
-  isActive: ['active', 'blocked'],
+  isActive: {
+    type: String,
+    enum: ['active', 'blocked'],
+    default: 'active',
+  },
 });
 
 export const StudentModel = model<Student>('Student', studentSchema);

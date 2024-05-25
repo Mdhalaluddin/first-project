@@ -42,7 +42,11 @@ const singleStudent = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (err) {
-    console.log(err);
+    res.status(500).json({
+      success: false,
+      message: "successfully data don't pass",
+      error: err,
+    });
   }
 };
 
