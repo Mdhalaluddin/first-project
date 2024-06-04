@@ -1,5 +1,10 @@
 import { Schema, model } from 'mongoose';
-import { Guardian, Student, UserName } from './student/students.interface';
+import {
+  Guardian,
+  LocalGuardian,
+  Student,
+  UserName,
+} from './student/students.interface';
 
 const guardianSchema = new Schema<Guardian>({
   fatherName: { type: String, required: true },
@@ -8,6 +13,13 @@ const guardianSchema = new Schema<Guardian>({
   motherName: { type: String, required: true },
   motherOccupation: { type: String, required: true },
   motherContractNo: { type: String, required: true },
+});
+
+const localGuardian = new Schema<LocalGuardian>({
+  name: { type: String, required: true },
+  occupation: { type: String, required: true },
+  contactNo: { type: String, required: true },
+  address: { type: String, required: true },
 });
 
 const nameSchema = new Schema<UserName>({
@@ -33,7 +45,7 @@ const studentSchema = new Schema<Student>({
   name: nameSchema,
   gender: {
     type: String,
-    enum: ['Male', 'female', 'other'],
+    enum: ['Male', 'Female', 'Other'],
     required: true,
   },
   dateOfBirth: {
@@ -71,14 +83,15 @@ const studentSchema = new Schema<Student>({
     massage: '{VALUE} is not required',
   },
   localGuardian: {
-    type: String,
+    type: localGuardian,
     required: true,
   },
   occupation: {
     type: String,
     required: true,
   },
-  profileImg: { type: String },
+  profileImg: { type: String, required: true },
+  emergencyContactNo: { type: String, required: true },
   isActive: {
     type: String,
     enum: ['active', 'blocked'],

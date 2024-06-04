@@ -24,10 +24,10 @@ export type LocalGuardian = {
 export type Student = {
   id: string;
   name: UserName;
-  gender: 'Male' | 'female';
+  gender: 'Male' | 'Female' | 'Other';
   dateOfBirth: string;
   contactNo: string;
-  emergencyContactNo: string;
+  emergencyContactNo?: string;
   bloodGroup?: 'A+' | 'A-' | 'B+' | 'B-' | 'AB+' | 'AB-' | 'O+' | 'O-';
   email: string;
   presentAddress: string;
@@ -36,5 +36,5 @@ export type Student = {
   localGuardian: LocalGuardian;
   profileImg?: string;
   occupation: string;
-  isActive: 'active' | 'isActive';
+  isActive?: 'active' | 'isActive' | 'blocked';
 };

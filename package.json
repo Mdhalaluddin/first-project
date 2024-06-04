@@ -20,7 +20,8 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "mongoose": "^8.4.0"
+    "mongoose": "^8.4.0",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@eslint/js": "^9.3.0",
@@ -29,7 +30,7 @@
     "@types/node": "^20.12.12",
     "@typescript-eslint/eslint-plugin": "^7.10.0",
     "@typescript-eslint/parser": "^7.10.0",
-    "eslint": "9.x",
+    "eslint": "^8.56.0",
     "globals": "^15.3.0",
     "typescript": "^5.4.5",
     "typescript-eslint": "^7.10.0"
